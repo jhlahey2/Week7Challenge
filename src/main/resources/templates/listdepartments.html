@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Departments and Employees</title>
+</head>
+<body>
+<br /><br />
+<a href="/listemployees">List Employees</a>
+<br />
+    <h1>Departments and Employees</h1>
+    <div th:each="department : ${departments}">
+        <h2 th:text="${department.departmentName}"></h2>
+       <h6 th:inline="text">Employees in [[*{department.departmentName}]]</h6>
+        <ul>
+            <th:block th:each="employee : ${department.employeeSet}">
+                <li th:inline="text">[[${employee.employeeName}]]</li>
+            </th:block>
+        </ul>
+    </div>
+</body>
+</html>

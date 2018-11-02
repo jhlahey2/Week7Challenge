@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List all Employees</title>
+</head>
+<body>
+    <br /><br />
+    <a href="/listdepartments">List Departments</a>
+    <br />
+    <table></table>
+    <br />
+    <table>
+        <tr>
+            <th>Employee<br />ID</th>
+            <th>Employee<br />Name</th>
+            <th>Employee<br />Title</th>
+            <th>Employee<br />Department</th>
+        </tr>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.employeeId}"></td>
+            <td th:text="${employee.employeeName}"></td>
+            <td th:text="${employee.title}"></td>
+            <th:block  th:object="${employee.department}">
+                <td th:inline="text">Works in [[*{departmentName}]].</td>
+            </th:block>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
