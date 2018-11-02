@@ -18,7 +18,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/","/h2/**").permitAll()
                 .antMatchers("/index").permitAll()
                 .antMatchers("/listalldepartmentsemployees").hasAuthority("USER")
                 .antMatchers("/listallemployeesdepartment").hasAuthority("USER")
@@ -28,6 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //FORGOT THE LAST TWO LINES!!
                 .anyRequest().authenticated()
                 .and().formLogin();
+
+        http.headers().frameOptions().disable().and().csrf().disable();
     }
 
     @Override
